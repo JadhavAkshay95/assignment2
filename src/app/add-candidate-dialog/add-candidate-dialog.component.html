@@ -1,0 +1,114 @@
+<div class="candidate-container">
+  <h2 mat-dialog-title>
+    {{ isEdit ? "Edit Employee Details" : "Add Employee" }}
+  </h2>
+
+  <mat-dialog-content class="mat-typography">
+    <form
+      [formGroup]="candidateForm"
+      (ngSubmit)="submit()"
+      class="example-form"
+    >
+      <div class="field-container">
+        <div class="field">
+          <label>FirstName</label>
+          <input formControlName="fname" required />
+          <span
+            *ngIf="
+              candidateForm.controls.fname.touched &&
+              candidateForm.controls.fname.invalid
+            "
+          >
+            <span *ngIf="candidateForm.controls.fname.errors.required"
+              >This field is mandatory.</span
+            >
+          </span>
+        </div>
+        <div class="field">
+          <label>Last Name</label>
+          <input formControlName="lname" required />
+          <span
+            *ngIf="
+              candidateForm.controls.lname.touched &&
+              candidateForm.controls.lname.invalid
+            "
+          >
+            <span *ngIf="candidateForm.controls.lname.errors.required"
+              >This field is mandatory.</span
+            >
+          </span>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="field">
+          <label>Job</label>
+          <select formControlName="job" name="cars" id="cars">
+            <ng-container *ngFor="let job of jobList">
+              <option [ngValue]="job">{{ job }}</option>
+            </ng-container>
+          </select>
+          <span
+            *ngIf="
+              candidateForm.controls.job.touched &&
+              candidateForm.controls.job.invalid
+            "
+          >
+            <span *ngIf="candidateForm.controls.job.errors.required"
+              >This field is mandatory.</span
+            >
+          </span>
+        </div>
+
+        <div class="field">
+          <label>Age</label>
+          <input type="number" formControlName="age" required />
+          <span
+            *ngIf="
+              candidateForm.controls.age.touched &&
+              candidateForm.controls.age.invalid
+            "
+          >
+            <span *ngIf="candidateForm.controls.age.errors.required"
+              >This field is mandatory.</span
+            >
+          </span>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <div class="field">
+          <label>Start Date</label>
+          <input type="date" formControlName="startDate" required />
+          <span
+            *ngIf="
+              candidateForm.controls.startDate.touched &&
+              candidateForm.controls.startDate.invalid
+            "
+          >
+            <span *ngIf="candidateForm.controls.startDate.errors.required"
+              >This field is mandatory.</span
+            >
+          </span>
+        </div>
+
+        <div class="field">
+          <label>End Date</label>
+          <input type="date" formControlName="endDate" required />
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="clear">Cancel</button>
+    <button
+      type="submit"
+      (click)="submit()"
+      mat-button
+      cdkFocusInitial
+      [disabled]="!candidateForm.valid"
+    >
+      {{ isEdit ? "Update" : "Save" }} Save
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,64 @@
+.candidate-container {
+  h2 {
+    text-align: center;
+    color: blue;
+  }
+  .tech-list {
+    margin: 20px 0px;
+    .mat-checkbox {
+      margin-right: 10px;
+    }
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .mat-radio-button {
+    margin: 10px;
+  }
+  .field {
+    margin: 10px 0px;
+
+    input,
+    select {
+      padding: 5px;
+      margin: 10px 0px;
+      border-radius: 5px;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    span {
+      color: red;
+    }
+  }
+}
+
+.field-container {
+  display: flex;
+  justify-content: space-between;
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 45%;
+  }
+}
+
+::ng-deep {
+  .mat-dialog-container {
+    width: 700px;
+  }
+}
+button {
+  margin: 10px;
+  border-radius: 10px;
+  color: white;
+  background: #4949dd;
+  padding: 4px 10px;
+}
+.clear {
+  background: gray;
+}

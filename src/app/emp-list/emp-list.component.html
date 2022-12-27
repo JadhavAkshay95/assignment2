@@ -1,0 +1,84 @@
+<div class="emp-container">
+  <div>
+    <h1>Employee List</h1>
+  </div>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Job Title</th>
+      <th>Age</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>
+        Action <button class="add-button" (click)="openDialog()">Add +</button>
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <input
+          placeholder="search by name"
+          [(ngModel)]="filterParams.name"
+          type="text"
+        />
+      </td>
+      <td>
+        <select [(ngModel)]="filterParams.job" name="cars" id="cars">
+          <option [ngValue]="job" *ngFor="let job of jobList">{{ job }}</option>
+        </select>
+      </td>
+      <td>
+        <input
+          placeholder="search by age"
+          [(ngModel)]="filterParams.age"
+          type="number"
+        />
+      </td>
+      <td>
+        <input
+          placeholder="search by start date"
+          [(ngModel)]="filterParams.startDate"
+          type="date"
+        />
+      </td>
+      <td>
+        <input
+          placeholder="search by end date"
+          [(ngModel)]="filterParams.endDate"
+          type="date"
+        />
+      </td>
+      <td>
+        <button class="add-button" (click)="filterData()">Filter</button>
+        <button class="add-button clear" (click)="clearFilter()">Clear</button>
+      </td>
+    </tr>
+    <tr *ngFor="let emp of empList">
+      <td>{{ emp.id }}</td>
+      <td>{{ emp.fname }} {{ emp.lname }}</td>
+      <td>{{ emp.job }}</td>
+      <td>{{ emp.age }}</td>
+      <td>{{ emp.startDate }}</td>
+      <td>
+        <ng-container *ngIf="!emp.endDate; else endDateTemp">
+         <span class="working">Currently Working</span> 
+        </ng-container>
+
+        <ng-template #endDateTemp>
+          {{ emp.endDate }}
+        </ng-template>
+      </td>
+      <td>
+        <button (click)="editEmpData(emp)">View Details</button>
+        <button
+          *ngIf="empList.length > 1"
+          (click)="deleteEmp(emp.id)"
+          class="delete"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
